@@ -1,0 +1,15 @@
+{
+  "name": "@alumni-web-app-v2/business",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@alumni-web-app-v2/dal": "*",
+    "@alumni-web-app-v2/shared": "*"
+  },
+  "devDependencies": {
+    "bcrypt": "^6.0.0"
+  }
+}

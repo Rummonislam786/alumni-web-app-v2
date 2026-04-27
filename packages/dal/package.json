@@ -1,0 +1,18 @@
+{
+  "name": "@alumni-web-app-v2/dal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@alumni-web-app-v2/shared": "*",
+    "dotenv": "^17.4.2",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.20.0",
+    "tsx": "^4.21.0"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "alumni-web-app-v2",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run dev --workspace=packages/api\" \"npm run dev --workspace=packages/frontend\"",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rummonislam786/alumni-web-app-v2.git"
+  },
+  "keywords": [],
+  "author": "Rummon Islam",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Rummonislam786/alumni-web-app-v2/issues"
+  },
+  "homepage": "https://github.com/Rummonislam786/alumni-web-app-v2#readme",
+  "devDependencies": {
+    "eslint": "^10.2.1",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.3"
+  }
+}

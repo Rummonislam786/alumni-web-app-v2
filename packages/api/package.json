@@ -1,0 +1,23 @@
+{
+  "name": "@alumni-web-app-v2/api",
+  "version": "1.0.0",
+  "main": "dist/index.js", 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@alumni-web-app-v2/business": "*",
+    "@alumni-web-app-v2/dal": "*",
+    "@alumni-web-app-v2/shared": "*",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "tsx": "^4.21.0"
+  }
+}
