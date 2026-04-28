@@ -8,8 +8,10 @@
   ],
   "main": "index.js",
   "scripts": {
+    "dev:api": "npm run dev --workspace=packages/api",
+    "dev:frontend": "npm run dev --workspace=packages/frontend",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run dev --workspace=packages/api\" \"npm run dev --workspace=packages/frontend\"",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:frontend\"",
     "build": "npm run build --workspaces --if-present"
   },
   "repository": {
@@ -25,6 +27,7 @@
   },
   "homepage": "https://github.com/Rummonislam786/alumni-web-app-v2#readme",
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.3"
