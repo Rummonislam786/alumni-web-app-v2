@@ -22,5 +22,3 @@ pool.query('SELECT NOW()', (err: any, res: { rows: any[] }) => {
 pool.on('error', (err) => {
   console.error('Database connection error:', err);
 });
-
-
