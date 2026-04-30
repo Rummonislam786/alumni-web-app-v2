@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { pool } from '../../dal/';
+import { pool } from '@alumni-web-app-v2/dal';
 
 dotenv.config({ path: '../../.env' });
 
