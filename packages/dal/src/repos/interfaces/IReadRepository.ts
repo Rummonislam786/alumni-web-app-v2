@@ -1,4 +1,4 @@
 export interface IReadRepository<T> {
-  findById(id: string): Promise<T | null>;
+  findById(id: number): Promise<T | null>;
   findAll(): Promise<T[]>;
 }

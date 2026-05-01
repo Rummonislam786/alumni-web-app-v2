@@ -32,7 +32,7 @@ export abstract class UserRepository
   //   photo_url?: string | null;
   // }
 
-  async update(id: string, item: UpdateUserDTO): Promise<User> {
+  async update(id: number, item: UpdateUserDTO): Promise<User> {
     const allowedFields = ['name', 'email', 'password', 'role', 'photo_url']; // extend as needed
 
     const fields: string[] = [];
@@ -64,11 +64,11 @@ export abstract class UserRepository
 
     return rows[0];
   }
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     await this.pool.query(`DELETE FROM users WHERE id = $1`, [id]);
   }
 
-  async findById(id: string): Promise<User | null> {
+  async findById(id: number): Promise<User | null> {
     const { rows } = await this.pool.query(
       `SELECT * FROM users WHERE id = $1`,
       [id]

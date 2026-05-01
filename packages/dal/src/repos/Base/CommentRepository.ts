@@ -29,7 +29,7 @@ export abstract class CommentRepository
   //   content?: string;
   // }
 
-  async update(id: string, item: UpdateCommentDTO): Promise<Comment> {
+  async update(id: number, item: UpdateCommentDTO): Promise<Comment> {
     const allowedFields = ['content']; // extend as needed
 
     const fields: string[] = [];
@@ -62,11 +62,11 @@ export abstract class CommentRepository
     return rows[0];
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     await this.pool.query(`DELETE FROM comments WHERE id = $1`, [id]);
   }
 
-  async findById(id: string): Promise<Comment | null> {
+  async findById(id: number): Promise<Comment | null> {
     const { rows } = await this.pool.query(
       `SELECT * FROM comments WHERE id = $1`,
       [id]

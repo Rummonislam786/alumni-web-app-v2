@@ -27,7 +27,7 @@ export abstract class PostRepository
   //   media_url?: string | null;
   // }
 
-  async update(id: string, item: UpdatePostDTO): Promise<Post> {
+  async update(id: number, item: UpdatePostDTO): Promise<Post> {
     const allowedFields = ['caption', 'media_url']; // extend as needed
 
     const fields: string[] = [];
@@ -60,11 +60,11 @@ export abstract class PostRepository
     return rows[0];
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     await this.pool.query(`DELETE FROM posts WHERE id = $1`, [id]);
   }
 
-  async findById(id: string): Promise<Post | null> {
+  async findById(id: number): Promise<Post | null> {
     const { rows } = await this.pool.query(
       `SELECT * FROM posts WHERE id = $1`,
       [id]
