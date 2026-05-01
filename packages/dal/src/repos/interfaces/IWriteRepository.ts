@@ -1,5 +1,5 @@
 export interface IWriteRepository<T> {
   create(item: T): Promise<T>;
-  update(id: string, item: T): Promise<T>;
-  delete(id: string): Promise<void>;
+  update(id: number, item: T): Promise<T>;
+  delete(id: number): Promise<void>;
 }

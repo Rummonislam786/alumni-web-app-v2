@@ -49,7 +49,7 @@ export abstract class AlumniRepository
   //   linkedin_url?: string | null;
   // }
 
-  async update(id: string, item: UpdateAlumniDTO): Promise<Alumni> {
+  async update(id: number, item: UpdateAlumniDTO): Promise<Alumni> {
     const allowedFields = [
       'graduation_year',
       'department',
@@ -89,11 +89,11 @@ export abstract class AlumniRepository
     return rows[0];
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     await this.pool.query(`DELETE FROM alumni WHERE id = $1`, [id]);
   }
 
-  async findById(id: string): Promise<Alumni | null> {
+  async findById(id: number): Promise<Alumni | null> {
     const { rows } = await this.pool.query(
       `SELECT * FROM alumni WHERE id = $1`,
       [id]
