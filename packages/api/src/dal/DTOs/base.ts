@@ -14,3 +14,9 @@ export interface PaginatedResponse<T> {
   data: T[];
   pagination: Pagination;
 }
+
+export interface BaseResponseDTO {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
