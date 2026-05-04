@@ -4,6 +4,12 @@ export interface ApiResponse<T> {
   message?: string;
   error?: string;
 }
+export interface BaseResponseDTO {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface Pagination {
   page: number;
   limit: number;
@@ -13,10 +19,4 @@ export interface PaginatedResponse<T> {
   success: boolean;
   data: T[];
   pagination: Pagination;
-}
-
-export interface BaseResponseDTO {
-  id: number;
-  createdAt: Date;
-  updatedAt: Date;
 }
