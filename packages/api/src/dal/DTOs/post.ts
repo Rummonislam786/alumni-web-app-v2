@@ -1,27 +1,5 @@
 import { BaseResponseDTO } from './base';
 
-export class CreatePostDTO {
-  user_id: number;
-  caption: string;
-  media_url?: string | null;
-
-  constructor(user_id: number, caption: string, media_url?: string | null) {
-    this.user_id = user_id;
-    this.caption = caption;
-    this.media_url = media_url ?? '';
-  }
-}
-
-export class UpdatePostDTO {
-  caption?: string;
-  media_url?: string | null;
-
-  constructor(caption?: string, media_url?: string | null) {
-    this.caption = caption ?? '';
-    this.media_url = media_url ?? '';
-  }
-}
-
 export class PostResponseDTO implements BaseResponseDTO {
   id: number;
   user_id: number;

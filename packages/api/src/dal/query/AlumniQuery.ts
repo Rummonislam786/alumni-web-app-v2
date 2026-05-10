@@ -1,12 +1,8 @@
 import { pool } from '../../config/db';
-import {
-  CreateAlumniDTO,
-  UpdateAlumniDTO,
-  AlumniResponseDTO,
-} from '../DTOs/alumni';
+import { AlumniResponseDTO } from '../DTOs/alumni';
 
 export class AlumniQuery {
-  static async createAlumni(data: CreateAlumniDTO) {
+  async createAlumni(data: AlumniResponseDTO) {
     const result = await pool.query(
       'INSERT INTO alumni (user_id, bio, company, experience_years, graduation_year, job_title, linkedin_url) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [
@@ -22,7 +18,7 @@ export class AlumniQuery {
     return result.rows[0];
   }
 
-  static async updateAlumni(id: number, data: UpdateAlumniDTO) {
+  async updateAlumni(id: number, data: AlumniResponseDTO) {
     const result = await pool.query(
       'UPDATE alumni SET bio = ?, company = ?, experience_years = ?, graduation_year = ?, job_title = ?, linkedin_url = ? WHERE id = ?',
       [
@@ -38,21 +34,19 @@ export class AlumniQuery {
     return result.rows[0];
   }
 
-  static async deleteAlumni(id: number) {
+  async deleteAlumni(id: number) {
     const result = await pool.query('Delete FROM alumni WHERE id = ?', [id]);
     return result.rows[0];
   }
 
-  static async getAllAlumnibyCompany(
-    company: string
-  ): Promise<AlumniResponseDTO[]> {
+  async getAllAlumnibyCompany(company: string): Promise<AlumniResponseDTO[]> {
     const result = await pool.query('SELECT * FROM alumni WHERE company = ?', [
       company,
     ]);
     return result.rows;
   }
 
-  static async getAllAlumnibyJobTitle(
+  async getAllAlumnibyJobTitle(
     job_title: string
   ): Promise<AlumniResponseDTO[]> {
     const result = await pool.query(
@@ -62,18 +56,18 @@ export class AlumniQuery {
     return result.rows;
   }
 
-  static async getAllAlumni(): Promise<AlumniResponseDTO[]> {
+  async getAllAlumni(): Promise<AlumniResponseDTO[]> {
     const result = await pool.query('SELECT * FROM alumni');
     return result.rows;
   }
 
-  static async getAllAlumniByUser(id: number): Promise<AlumniResponseDTO> {
+  async getAllAlumniByUser(id: number): Promise<AlumniResponseDTO> {
     const result = await pool.query('SELECT * FROM alumni WHERE user_id = ?', [
       id,
     ]);
     return result.rows[0];
   }
-  static async getAlumniById(id: number): Promise<AlumniResponseDTO> {
+  async getAlumniById(id: number): Promise<AlumniResponseDTO> {
     const result = await pool.query('SELECT * FROM alumni where id = ?', [id]);
     return result.rows[0];
   }
