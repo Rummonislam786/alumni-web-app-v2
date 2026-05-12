@@ -1,19 +1,19 @@
 import { pool } from '../../config/db';
-import { CommentResponseDTO } from '../DTOs/comment';
+import { CommentDTO } from '../DTOs/comment';
 
 export class CommentQuery {
-  async createComment(data: CommentResponseDTO) {
+  async createComment(comment: CommentDTO) {
     const result = await pool.query(
       'INSERT INTO comment (user_id, caption, media_url) VALUES (?, ?, ?, ?)',
-      [data.user_id, data.parent_id, data.post_id, data.content]
+      [comment.user_id, comment.parent_id, comment.post_id, comment.content]
     );
     return result.rows[0];
   }
 
-  async updateComment(id: number, data: CommentResponseDTO) {
+  async updateComment(id: number, comment: CommentDTO) {
     const result = await pool.query(
       'UPDATE comment SET content = ? WHERE id = ?',
-      [data.content, id]
+      [comment.content, id]
     );
     return result.rows[0];
   }
@@ -23,18 +23,18 @@ export class CommentQuery {
     return result.rows[0];
   }
 
-  async getAllComments(): Promise<CommentResponseDTO[]> {
+  async getAllComments(): Promise<CommentDTO[]> {
     const result = await pool.query('SELECT * FROM comment');
     return result.rows;
   }
 
-  async getAllCommentsByUser(id: number): Promise<CommentResponseDTO[]> {
+  async getAllCommentsByUser(id: number): Promise<CommentDTO[]> {
     const result = await pool.query('SELECT * FROM comment WHERE user_id = ?', [
       id,
     ]);
     return result.rows;
   }
-  async getCommentById(id: number): Promise<CommentResponseDTO> {
+  async getCommentById(id: number): Promise<CommentDTO> {
     const result = await pool.query('SELECT * FROM comment where id = ?', [id]);
     return result.rows[0];
   }

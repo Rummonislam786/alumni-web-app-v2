@@ -10,8 +10,9 @@
   "scripts": {
     "dev:api": "npm run dev --workspace=packages/api",
     "dev:frontend": "npm run dev --workspace=packages/frontend",
+    "dev:business": "npm run dev --workspace=packages/businesslogic",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run dev:api\" \"npm run dev:frontend\"",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:frontend\" \"dev:business\"",
     "build": "npm run build --workspaces --if-present"
   },
   "repository": {

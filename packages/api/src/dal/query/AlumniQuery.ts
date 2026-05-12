@@ -1,33 +1,33 @@
 import { pool } from '../../config/db';
-import { AlumniResponseDTO } from '../DTOs/alumni';
+import { AlumniDTO } from '../DTOs/alumni';
 
 export class AlumniQuery {
-  async createAlumni(data: AlumniResponseDTO) {
+  async createAlumni(alumni: AlumniDTO) {
     const result = await pool.query(
       'INSERT INTO alumni (user_id, bio, company, experience_years, graduation_year, job_title, linkedin_url) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [
-        data.user_id,
-        data.bio,
-        data.company,
-        data.experience_years,
-        data.graduation_year,
-        data.job_title,
-        data.linkedin_url,
+        alumni.user_id,
+        alumni.bio,
+        alumni.company,
+        alumni.experience_years,
+        alumni.graduation_year,
+        alumni.job_title,
+        alumni.linkedin_url,
       ]
     );
     return result.rows[0];
   }
 
-  async updateAlumni(id: number, data: AlumniResponseDTO) {
+  async updateAlumni(id: number, alumni: AlumniDTO) {
     const result = await pool.query(
       'UPDATE alumni SET bio = ?, company = ?, experience_years = ?, graduation_year = ?, job_title = ?, linkedin_url = ? WHERE id = ?',
       [
-        data.bio,
-        data.company,
-        data.experience_years,
-        data.graduation_year,
-        data.job_title,
-        data.linkedin_url,
+        alumni.bio,
+        alumni.company,
+        alumni.experience_years,
+        alumni.graduation_year,
+        alumni.job_title,
+        alumni.linkedin_url,
         id,
       ]
     );
@@ -39,16 +39,14 @@ export class AlumniQuery {
     return result.rows[0];
   }
 
-  async getAllAlumnibyCompany(company: string): Promise<AlumniResponseDTO[]> {
+  async getAllAlumnibyCompany(company: string): Promise<AlumniDTO[]> {
     const result = await pool.query('SELECT * FROM alumni WHERE company = ?', [
       company,
     ]);
     return result.rows;
   }
 
-  async getAllAlumnibyJobTitle(
-    job_title: string
-  ): Promise<AlumniResponseDTO[]> {
+  async getAllAlumnibyJobTitle(job_title: string): Promise<AlumniDTO[]> {
     const result = await pool.query(
       'SELECT * FROM alumni WHERE job_title = ?',
       [job_title]
@@ -56,18 +54,18 @@ export class AlumniQuery {
     return result.rows;
   }
 
-  async getAllAlumni(): Promise<AlumniResponseDTO[]> {
+  async getAllAlumni(): Promise<AlumniDTO[]> {
     const result = await pool.query('SELECT * FROM alumni');
     return result.rows;
   }
 
-  async getAllAlumniByUser(id: number): Promise<AlumniResponseDTO> {
+  async getAllAlumniByUser(id: number): Promise<AlumniDTO> {
     const result = await pool.query('SELECT * FROM alumni WHERE user_id = ?', [
       id,
     ]);
     return result.rows[0];
   }
-  async getAlumniById(id: number): Promise<AlumniResponseDTO> {
+  async getAlumniById(id: number): Promise<AlumniDTO> {
     const result = await pool.query('SELECT * FROM alumni where id = ?', [id]);
     return result.rows[0];
   }

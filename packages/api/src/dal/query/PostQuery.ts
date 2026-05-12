@@ -1,19 +1,26 @@
 import { pool } from '../../config/db';
-import { PostResponseDTO } from '../DTOs/post';
+import { PostDTO } from '../DTOs/post';
 
 export class PostQuery {
-  async createPost(data: PostResponseDTO) {
+  async createPost(post: PostDTO) {
     const result = await pool.query(
-      'INSERT INTO posts (user_id, caption, media_url) VALUES (?, ?, ?)',
-      [data.user_id, data.caption, data.media_url]
+      'INSERT INTO posts (user_id, caption, media_url,created_at, updated_at, type) VALUES ($1, $2, $3, $4, $5, $6)',
+      [
+        post.user_id,
+        post.caption,
+        post.media_url,
+        post.createdAt,
+        post.updatedAt,
+        post.post_type,
+      ]
     );
     return result.rows[0];
   }
 
-  async updatePost(id: number, data: PostResponseDTO) {
+  async updatePost(id: number, post: PostDTO) {
     const result = await pool.query(
       'UPDATE posts SET caption = ?, media_url = ? WHERE id = ?',
-      [data.caption, data.media_url, id]
+      [post.caption, post.media_url, id]
     );
     return result.rows[0];
   }
@@ -23,18 +30,18 @@ export class PostQuery {
     return result.rows[0];
   }
 
-  async getAllPosts(): Promise<PostResponseDTO[]> {
+  async getAllPosts(): Promise<PostDTO[]> {
     const result = await pool.query('SELECT * FROM posts');
     return result.rows;
   }
 
-  async getAllPostsByUser(id: number): Promise<PostResponseDTO[]> {
+  async getAllPostsByUser(id: number): Promise<PostDTO[]> {
     const result = await pool.query('SELECT * FROM posts WHERE user_id = ?', [
       id,
     ]);
     return result.rows;
   }
-  async getPostById(id: number): Promise<PostResponseDTO> {
+  async getPostById(id: number): Promise<PostDTO> {
     const result = await pool.query('SELECT * FROM posts where id = ?', [id]);
     return result.rows[0];
   }

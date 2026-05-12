@@ -4,8 +4,7 @@ export interface ApiResponse<T> {
   message?: string;
   error?: string;
 }
-export interface BaseResponseDTO {
-  id: number;
+export interface BaseDTO {
   createdAt: Date;
   updatedAt: Date;
 }

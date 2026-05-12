@@ -1,7 +1,6 @@
-import { BaseResponseDTO } from './base';
+import { BaseDTO } from './base';
 
-export class CommentResponseDTO implements BaseResponseDTO {
-  id: number;
+export class CommentDTO implements BaseDTO {
   user_id: number;
   post_id: number;
   parent_id?: number | null;
@@ -10,20 +9,16 @@ export class CommentResponseDTO implements BaseResponseDTO {
   updatedAt: Date;
 
   constructor(
-    id: number,
-    createdAt: Date,
-    updatedAt: Date,
     user_id: number,
     post_id: number,
     parent_id?: number | null,
     content?: string
   ) {
-    this.id = id;
     this.user_id = user_id;
     this.post_id = post_id;
     this.parent_id = parent_id ?? null;
     this.content = content ?? '';
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
   }
 }

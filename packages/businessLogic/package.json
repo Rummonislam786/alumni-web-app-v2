@@ -1,0 +1,16 @@
+{
+  "name": "@alumni-web-app-v2/businesslogic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/PostManager.ts"
+  },
+  "dependencies": {
+    "@alumni-web-app-v2/api": "*"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "commonjs"
+}

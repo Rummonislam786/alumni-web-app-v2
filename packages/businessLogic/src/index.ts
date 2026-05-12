@@ -1,0 +1,11 @@
+import { PostType } from '@alumni-web-app-v2/api/src/dal/DTOs/post';
+import { PostManager } from './PostManager';
+
+const postmanager = new PostManager();
+postmanager.createNewPost(
+  3,
+  'hello everyone, this is from business logic',
+  'asset/image1.jpg',
+  1,
+  PostType.Standard
+);

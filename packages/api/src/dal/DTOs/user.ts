@@ -1,10 +1,9 @@
-import { BaseResponseDTO } from './base';
+import { BaseDTO } from './base';
 
 export type Role = 'admin' | 'user' | 'alumni';
 
 //API output
-export class UserResponseDTO implements BaseResponseDTO {
-  id: number;
+export class UserDTO implements BaseDTO {
   Name: string;
   Password: string;
   Email: string;
@@ -15,9 +14,6 @@ export class UserResponseDTO implements BaseResponseDTO {
   createdAt: Date;
   updatedAt: Date;
   constructor(
-    id: number,
-    createdAt: Date,
-    updatedAt: Date,
     Name: string,
     Email: string,
     Password: string,
@@ -26,7 +22,6 @@ export class UserResponseDTO implements BaseResponseDTO {
     login_at?: Date | null,
     logout_at?: Date | null
   ) {
-    this.id = id;
     this.Name = Name;
     this.Email = Email;
     this.Role = Role;
@@ -34,7 +29,7 @@ export class UserResponseDTO implements BaseResponseDTO {
     this.photo_url = photo_url;
     this.login_at = login_at ?? null;
     this.logout_at = logout_at ?? null;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
   }
 }

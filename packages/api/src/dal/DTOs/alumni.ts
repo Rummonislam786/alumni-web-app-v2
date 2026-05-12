@@ -1,7 +1,6 @@
-import { BaseResponseDTO } from './base';
+import { BaseDTO } from './base';
 
-export class AlumniResponseDTO implements BaseResponseDTO {
-  id: number;
+export class AlumniDTO implements BaseDTO {
   user_id: number;
   graduation_year: number;
   department: string;
@@ -13,9 +12,6 @@ export class AlumniResponseDTO implements BaseResponseDTO {
   createdAt: Date;
   updatedAt: Date;
   constructor(
-    id: number,
-    createdAt: Date,
-    updatedAt: Date,
     user_id: number,
     graduation_year: number,
     department: string,
@@ -25,7 +21,6 @@ export class AlumniResponseDTO implements BaseResponseDTO {
     bio?: string | null,
     linkedin_url?: string | null
   ) {
-    this.id = id;
     this.user_id = user_id;
     this.graduation_year = graduation_year;
     this.department = department;
@@ -34,7 +29,7 @@ export class AlumniResponseDTO implements BaseResponseDTO {
     this.experience_years = experience_years || 0;
     this.bio = bio;
     this.linkedin_url = linkedin_url;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
   }
 }
