@@ -20,4 +20,10 @@ export class PostManager {
     const newPost = postQuery.createPost(post);
     console.log(newPost);
   }
+
+  public async getAllPostByUserID() {
+    const postQuery = new PostQuery();
+    const newpost = postQuery.getAllPosts();
+    console.log('The Posts are: ', JSON.stringify(newpost, null, 2));
+  }
 }

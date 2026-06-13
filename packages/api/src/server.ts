@@ -8,4 +8,6 @@ app.listen(PORT, () => {
 });
 
 const dalmanager = new DalPostManager();
-dalmanager.createPost();
+dalmanager.getAllPost();
+// dalmanager.createPost();
+// dalmanager.createPost();

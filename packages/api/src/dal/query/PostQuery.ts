@@ -17,26 +17,31 @@ export class PostQuery {
     return result.rows[0];
   }
 
-  async updatePost(id: number, post: PostDTO) {
+  async updatePost(post: PostDTO, fieldsToUpdate: string[]) {
     const result = await pool.query(
-      'UPDATE posts SET caption = ?, media_url = ? WHERE id = ?',
-      [post.caption, post.media_url, id]
+      'UPDATE posts SET caption = $1, media_url = $2 WHERE id = $3',
+      [post.caption, post.media_url]
     );
     return result.rows[0];
   }
 
   async deletePost(id: number) {
-    const result = await pool.query('Delete FROM posts WHERE id = ?', [id]);
+    const result = await pool.query('Delete FROM posts WHERE id = $1', [id]);
     return result.rows[0];
   }
 
   async getAllPosts(): Promise<PostDTO[]> {
     const result = await pool.query('SELECT * FROM posts');
-    return result.rows;
+    const posts: PostDTO[] = [];
+    for (const post of result.rows) {
+      posts.push(post);
+    }
+    console.log(posts);
+    return posts;
   }
 
   async getAllPostsByUser(id: number): Promise<PostDTO[]> {
-    const result = await pool.query('SELECT * FROM posts WHERE user_id = ?', [
+    const result = await pool.query('SELECT * FROM posts WHERE user_id = $1', [
       id,
     ]);
     return result.rows;
