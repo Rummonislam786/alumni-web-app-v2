@@ -1,4 +1,4 @@
-import { pool } from '../../config/db';
+import { pool } from '../config/db';
 import { PostDTO } from '../DTOs/post';
 
 export class PostQuery {
@@ -47,7 +47,7 @@ export class PostQuery {
     return result.rows;
   }
   async getPostById(id: number): Promise<PostDTO> {
-    const result = await pool.query('SELECT * FROM posts where id = ?', [id]);
+    const result = await pool.query('SELECT * FROM posts where id = $1', [id]);
     return result.rows[0];
   }
 }

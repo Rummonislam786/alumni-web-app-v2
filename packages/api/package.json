@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@alumni-web-app-v2/shared": "*",
+    "@alumni-web-app-v2/businesslogic": "*",
     "cors": "^2.8.6",
     "express": "^5.2.1"
   },

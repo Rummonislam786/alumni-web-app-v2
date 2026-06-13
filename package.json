@@ -11,8 +11,10 @@
     "dev:api": "npm run dev --workspace=packages/api",
     "dev:frontend": "npm run dev --workspace=packages/frontend",
     "dev:business": "npm run dev --workspace=packages/businesslogic",
+    "dev:dal": "npm run dev --workspace=packages/dal",
+    "build:dal": "npm run build --workspace=packages/dal",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run dev:api\" \"npm run dev:frontend\" \"npm run dev:business\"",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:frontend\" \"npm run dev:business\" \"npm run dev:dal\"",
     "build": "npm run build --workspaces --if-present"
   },
   "repository": {
@@ -32,5 +34,8 @@
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
   }
 }

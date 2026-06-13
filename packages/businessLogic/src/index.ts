@@ -1,4 +1,4 @@
-import { PostType } from '@alumni-web-app-v2/api/src/dal/DTOs/post';
+import { PostType } from '@alumni-web-app-v2/dal/src/DTOs/post';
 import { PostManager } from './PostManager';
 
 const postmanager = new PostManager();
@@ -11,4 +11,4 @@ console.log(
     PostType.Standard
   )
 );
-// postmanager.getAllPostByUserID();
+postmanager.getAllPostByUserID(2);

@@ -10,7 +10,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@alumni-web-app-v2/api": "*"
+    "@alumni-web-app-v2/dal": "*"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,5 @@
-import { PostDTO, PostType } from '@alumni-web-app-v2/api/src/dal/DTOs/post';
-import { PostQuery } from '@alumni-web-app-v2/api/src/dal/query/PostQuery';
+import { PostDTO, PostType } from '@alumni-web-app-v2/dal/src/DTOs/post';
+import { PostQuery } from '@alumni-web-app-v2/dal/src/query/PostQuery';
 
 export class PostManager {
   public async createNewPost(
@@ -21,9 +21,9 @@ export class PostManager {
     console.log(newPost);
   }
 
-  public async getAllPostByUserID() {
+  public async getAllPostByUserID(id: number) {
     const postQuery = new PostQuery();
-    const newpost = postQuery.getAllPosts();
+    const newpost = postQuery.getAllPostsByUser(id);
     console.log('The Posts are: ', JSON.stringify(newpost, null, 2));
   }
 }

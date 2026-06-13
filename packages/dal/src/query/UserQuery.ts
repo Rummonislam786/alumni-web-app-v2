@@ -1,5 +1,5 @@
 import { Role } from '@alumni-web-app-v2/shared';
-import { pool } from '../../config/db';
+import { pool } from '../config/db';
 import { UserDTO } from '../DTOs/user';
 
 export class UsersQuery {
