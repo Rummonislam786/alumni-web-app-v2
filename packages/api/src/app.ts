@@ -2,11 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { pool } from '@alumni-web-app-v2/dal/src/config/db';
-
+import { PostManager } from '@alumni-web-app-v2/businessLogic/src/PostManager';
 dotenv.config({ path: '../../.env' });
 
 const app = express();
-
+const postManager = new PostManager();
 app.use(cors());
 app.use(express.json());
 
@@ -33,6 +33,10 @@ app.get('/api/db-test', async (req, res) => {
 
 app.get('/api/test', (req, res) => {
   res.status(200).json({ message: 'API is working!' });
+});
+app.get('/api/echo', (req, res) => {
+  const data = postManager.getAllPostByUserID(2);
+  res.status(200).json({ echo: data });
 });
 
 export default app;
