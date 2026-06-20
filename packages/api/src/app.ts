@@ -34,9 +34,14 @@ app.get('/api/db-test', async (req, res) => {
 app.get('/api/test', (req, res) => {
   res.status(200).json({ message: 'API is working!' });
 });
-app.get('/api/echo', (req, res) => {
-  const data = postManager.getAllPostByUserID(2);
-  res.status(200).json({ echo: data });
+app.get('/api/echo', async (req, res) => {
+  try {
+    // ADD await HERE
+    const data = await postManager.getAllPostByUserID(2);
+    res.status(200).json({ echo: data });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 export default app;

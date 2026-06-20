@@ -23,7 +23,8 @@ export class PostManager {
 
   public async getAllPostByUserID(id: number) {
     const postQuery = new PostQuery();
-    const newpost = postQuery.getAllPostsByUser(id);
+    const newpost = await postQuery.getAllPostsByUser(id);
     console.log('The Posts are: ', JSON.stringify(newpost, null, 2));
+    return newpost;
   }
 }

@@ -44,7 +44,8 @@ export class PostQuery {
     const result = await pool.query('SELECT * FROM posts WHERE user_id = $1', [
       id,
     ]);
-    return result.rows;
+    const posts: PostDTO[] = result.rows;
+    return posts;
   }
   async getPostById(id: number): Promise<PostDTO> {
     const result = await pool.query('SELECT * FROM posts where id = $1', [id]);
