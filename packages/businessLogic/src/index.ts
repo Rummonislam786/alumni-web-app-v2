@@ -1,4 +1,4 @@
-import { PostType } from '@alumni-web-app-v2/dal/src/DTOs/post';
+import { PostType } from '@alumni-web-app-v2/shared/src/types/post';
 import { PostManager } from './PostManager';
 
 // const postmanager = new PostManager();

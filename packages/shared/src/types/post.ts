@@ -1,3 +1,10 @@
+export enum PostType {
+  Standard = 'Standard',
+  Announcement = 'Announcement',
+  JobPost = 'Job Post',
+  Event = 'Event',
+}
+
 export interface Post {
   id: number;
   user_id: number;
@@ -6,4 +13,5 @@ export interface Post {
   comments_count: number;
   createdAt: Date;
   updatedAt: Date;
+  post_type: PostType;
 }

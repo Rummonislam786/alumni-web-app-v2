@@ -1,10 +1,5 @@
 import { BaseDTO } from './base';
-export enum PostType {
-  Standard = 'Standard',
-  Announcement = 'Announcement',
-  JobPost = 'Job Post',
-  Event = 'Event',
-}
+import { PostType } from '@alumni-web-app-v2/shared/src/types/post';
 export class PostDTO implements BaseDTO {
   user_id: number;
   caption: string;
