@@ -18,7 +18,7 @@ export class PostManager {
       comments_count,
       post_type
     );
-    const newPost = postQuery.createPost(post);
+    const newPost = await postQuery.createPost(post);
     console.log(newPost);
     return newPost;
   }

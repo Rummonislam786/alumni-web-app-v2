@@ -1,20 +1,22 @@
 import { pool } from '../config/db';
 import { CommentDTO } from '../DTOs/comment';
+import { buildUpdateQuery } from '../QueryBuilder/updateQueryBuilder';
 
 export class CommentQuery {
   async createComment(comment: CommentDTO) {
     const result = await pool.query(
-      'INSERT INTO comment (user_id, caption, media_url) VALUES ($1, $2, $3, $4)',
+      'INSERT INTO comment (user_id, parent_id, post_id, content) VALUES ($1, $2, $3, $4)',
       [comment.user_id, comment.parent_id, comment.post_id, comment.content]
     );
     return result.rows[0];
   }
 
-  async updateComment(id: number, comment: CommentDTO) {
-    const result = await pool.query(
-      'UPDATE comment SET content = $1 WHERE id = $2',
-      [comment.content, id]
-    );
+  async updateComment(id: number, comment: Record<string, any>) {
+    const { query, values } = buildUpdateQuery('comment', comment, {
+      column: 'id',
+      value: id,
+    });
+    const result = await pool.query(query, values);
     return result.rows[0];
   }
 

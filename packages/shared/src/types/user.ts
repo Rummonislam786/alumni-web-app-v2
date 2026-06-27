@@ -1,4 +1,4 @@
-export type Role = 'admin' | 'user' | 'alumni';
+
 
 // Database truth
 export interface User {
@@ -6,7 +6,7 @@ export interface User {
   Name: string;
   Email: string;
   Password: string;
-  Role: Role;
+  Role: string;
   photo_url?: string | null;
   login_at: Date | null;
   logout_at: Date | null;

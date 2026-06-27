@@ -7,7 +7,7 @@ export class UserDTO implements BaseDTO {
   Name: string;
   Password: string;
   Email: string;
-  Role: Role;
+  Role: string;
   photo_url?: string | null;
   login_at: Date | null;
   logout_at: Date | null;
@@ -17,7 +17,7 @@ export class UserDTO implements BaseDTO {
     Name: string,
     Email: string,
     Password: string,
-    Role: Role,
+    Role: string,
     photo_url?: string | null,
     login_at?: Date | null,
     logout_at?: Date | null

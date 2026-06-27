@@ -18,8 +18,8 @@ export class PostQuery {
     );
     return result.rows[0];
   }
-  async updatePost(postID: number, data: Record<string, any>) {
-    const { query, values } = buildUpdateQuery('posts', data, {
+  async updatePost(postID: number, post: Record<string, any>) {
+    const { query, values } = buildUpdateQuery('posts', post, {
       column: 'id',
       value: postID,
     });
