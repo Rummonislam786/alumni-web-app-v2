@@ -5,7 +5,7 @@ export type Role = 'admin' | 'user' | 'alumni';
 //API output
 export class UserDTO implements BaseDTO {
   Name: string;
-  Password: string;
+  password: string;
   Email: string;
   Role: string;
   photo_url?: string | null;
@@ -25,7 +25,7 @@ export class UserDTO implements BaseDTO {
     this.Name = Name;
     this.Email = Email;
     this.Role = Role;
-    this.Password = Password;
+    this.password = Password;
     this.photo_url = photo_url;
     this.login_at = login_at ?? null;
     this.logout_at = logout_at ?? null;

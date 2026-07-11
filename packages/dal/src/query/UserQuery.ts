@@ -6,7 +6,7 @@ export class UserQuery {
   async createUser(user: UserDTO) {
     const result = await pool.query(
       'INSERT INTO users (Name, Email, Password, Role, photo_url) VALUES ($1, $2, $3, $4, $5)',
-      [user.Name, user.Email, user.Password, user.Role, user.photo_url]
+      [user.Name, user.Email, user.password, user.Role, user.photo_url]
     );
     return result.rows[0];
   }

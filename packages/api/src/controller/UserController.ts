@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import { UserManager } from '@alumni-web-app-v2/businessLogic/src/UserManager';
 import bcrypt from 'bcrypt';
+import jsonwebtoken from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.JWT_SECRET || '16bd190326bf3a8941f49ed0db0a6c58';
 
 export class UserController {
   public async login(req: Request, res: Response) {
@@ -11,11 +14,22 @@ export class UserController {
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-      const isPasswordValid = await bcrypt.compare(password, user.Password);
+      console.log('Retrieved user:', user);
+      console.log(
+        'Comparing provided password with stored hash:',
+        password,
+        user.password
+      );
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      console.log('Password validation result:', isPasswordValid);
       if (!isPasswordValid) {
         return res.status(401).json({ message: 'Invalid password' });
       }
-      res.status(200).json({ message: 'Login successful', data: user });
+      const token = jsonwebtoken.sign(
+        { email: user.Email, role: user.Role },
+        JWT_SECRET
+      );
+      res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
       res.status(500).json({
         message: 'Failed to login',
@@ -71,15 +85,18 @@ export class UserController {
       const { id } = req.params;
       const { newPassword } = req.body;
       const userManager = new UserManager();
-      const saltRounds = process.env.saltRounds ?? '5856';
+      const saltRounds = process.env.saltRounds ?? '5';
+      console.log('Salt rounds for bcrypt:', saltRounds);
       const hashedPassword = await bcrypt.hash(
         newPassword,
         parseInt(saltRounds)
       );
+      console.log('Hashed password:', hashedPassword);
       const updatedUser = await userManager.updateUserPassword(
         Number(id),
         hashedPassword
       );
+      console.log('Updated user:', updatedUser);
       if (!updatedUser) {
         return res.status(404).json({ message: 'User not found' });
       }
@@ -94,7 +111,7 @@ export class UserController {
       });
     }
   }
-  
+
   public async deleteUser(req: Request, res: Response) {
     try {
       const { id } = req.params;
