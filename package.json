@@ -30,12 +30,17 @@
   },
   "homepage": "https://github.com/Rummonislam786/alumni-web-app-v2#readme",
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "concurrently": "^9.2.1",
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.3"
   },
   "dependencies": {
-    "dotenv": "^17.4.2"
+    "bcrypt": "^6.0.0",
+    "bcrypt-ts": "^8.0.1",
+    "dotenv": "^17.4.2",
+    "jsonwebtoken": "^9.0.3"
   }
 }

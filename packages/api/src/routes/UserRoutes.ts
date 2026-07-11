@@ -11,5 +11,7 @@ router.get('/users/:id', userControllerInstance.getUserById);
 router.get('/users/name/:name', userControllerInstance.getUsersByName);
 router.get('/users/email/:email', userControllerInstance.getUserByEmail);
 router.get('/users/role/:role', userControllerInstance.getUsersByRole);
+router.put('/users/:id/password', userControllerInstance.updateUserPassword);
+router.post('/loginTest', userControllerInstance.login);
 
 export default router;

@@ -1,15 +1,38 @@
 import { Request, Response } from 'express';
 import { UserManager } from '@alumni-web-app-v2/businessLogic/src/UserManager';
+import bcrypt from 'bcrypt';
+
 export class UserController {
+  public async login(req: Request, res: Response) {
+    const { email, password } = req.body;
+    const userManager = new UserManager();
+    try {
+      const user = await userManager.getUserByEmail(email);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      const isPasswordValid = await bcrypt.compare(password, user.Password);
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: 'Invalid password' });
+      }
+      res.status(200).json({ message: 'Login successful', data: user });
+    } catch (error) {
+      res.status(500).json({
+        message: 'Failed to login',
+        error: (error as Error).message,
+      });
+    }
+  }
   public async createUser(req: Request, res: Response) {
     const { name, email, password, role, photo_url } = req.body;
     console.log('Received user data:', req.body);
     const userManager = new UserManager();
+    const saltRounds = process.env.saltRounds ?? '5856';
     try {
       const newUser = await userManager.createUser(
         name,
         email,
-        password,
+        await bcrypt.hash(password, parseInt(saltRounds)),
         role,
         photo_url
       );
@@ -43,6 +66,35 @@ export class UserController {
       });
     }
   }
+  public async updateUserPassword(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const { newPassword } = req.body;
+      const userManager = new UserManager();
+      const saltRounds = process.env.saltRounds ?? '5856';
+      const hashedPassword = await bcrypt.hash(
+        newPassword,
+        parseInt(saltRounds)
+      );
+      const updatedUser = await userManager.updateUserPassword(
+        Number(id),
+        hashedPassword
+      );
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      return res.status(200).json({
+        message: 'User password updated successfully',
+        data: updatedUser,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: 'Failed to update user password',
+        error: (error as Error).message,
+      });
+    }
+  }
+  
   public async deleteUser(req: Request, res: Response) {
     try {
       const { id } = req.params;

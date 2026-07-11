@@ -55,7 +55,14 @@ export class UserManager {
     }
     return await userQuery.updateUser(Userid, data);
   }
-
+  public async updateUserPassword(Userid: number, newPassword: string) {
+    // Implementation to update user password
+    const userQuery = new UserQuery();
+    const updatedUser = await userQuery.updateUser(Userid, {
+      Password: newPassword,
+    });
+    return updatedUser;
+  }
   public async deleteUser(Userid: number) {
     // Implementation to delete a user
     const userQuery = new UserQuery();
